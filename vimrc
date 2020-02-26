@@ -16,6 +16,7 @@ endif
 set directory=$HOME/.vim/.swp//
 
 map <C-n> :NERDTreeToggle<CR>
+map ,m :NERDTreeFind<CR>
 
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
