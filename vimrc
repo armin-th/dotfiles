@@ -79,6 +79,7 @@ let g:ale_fixers = {
 \   'python': ['autopep8'],
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
+\   'less': ['prettier'],
 \   'elixir': ['mix_format'],
 \   'rust': ['rustfmt'],
 \   'java': [],
