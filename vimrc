@@ -4,6 +4,8 @@ endif
 set undodir=$HOME/.vim/.undo//
 set undofile
 
+set visualbell
+
 if !isdirectory($HOME . '/.vim/.backup/')
   call mkdir($HOME . '/.vim/.backup/', 'p')
 endif
