@@ -85,6 +85,7 @@ let g:ale_fixers = {
 \   'elixir': ['mix_format'],
 \   'rust': ['rustfmt'],
 \   'java': [],
+\   'nix': ['nixpkgs-fmt'],
 \}
 
 let g:ale_fix_on_save = 1
