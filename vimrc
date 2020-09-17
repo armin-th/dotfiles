@@ -50,6 +50,7 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ajh17/VimCompletesMe'
+Plug 'bakpakin/fennel.vim'
 Plug 'elixir-lang/vim-elixir'
 Plug 'jiangmiao/auto-pairs'
 Plug 'kien/ctrlp.vim'
