@@ -24,3 +24,4 @@ pkgs.stdenv.mkDerivation rec {
     tmux -f ${templates.tmux-conf} new-session -A -s ${pname} "ZDOTDIR=${templates.z-dot-dir} zsh -i"
   '';
 }
+
