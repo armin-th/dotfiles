@@ -12,16 +12,20 @@ pkgs.stdenv.mkDerivation rec {
 
   buildInputs = [
     cargo
+    curl
     emacs-nox
     git
     nodejs
     rustc
     tmux
+    vim
+    wget
     zsh
   ];
 
   shellHook = ''
-    tmux -f ${templates.tmux-conf} new-session -A -s ${pname} "ZDOTDIR=${templates.z-dot-dir} zsh -i"
+    unset SSL_CERT_FILE
+    tmux -u -f ${templates.tmux-conf} new-session -A -s ${pname} "ZDOTDIR=${templates.z-dot-dir} zsh -i"
   '';
 }
 
