@@ -1,3 +1,10 @@
+#Quick Start
+Step these dot files via
+```
+cd dotfiles
+sh ./install.sh
+```
+
 # dotfiles
 These dot files are my dot files. There are many like them but these are mine! 
 
