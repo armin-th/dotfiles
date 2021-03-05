@@ -18,8 +18,8 @@ if [ ! -d $HOME/.oh-my-zsh ]; then
 fi
 
 echo "copying dev-tools derivation to home directory"
-rm -rf $HOME/dev-tools
-cp -r $SCRIPT_PATH/dev-tools $HOME/dev-tools
+rm -rf $HOME/.dev-tools
+cp -r $SCRIPT_PATH/dev-tools $HOME/.dev-tools
 
 
 echo "copying config files to home directory"

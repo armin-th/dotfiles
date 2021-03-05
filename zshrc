@@ -106,7 +106,7 @@ function dsh() {
     return
   fi
 
-  nix-shell $HOME/dev-tools/default.nix --command "dev-shell $*"
+  nix-shell $HOME/.dev-tools/default.nix --command "dev-shell $*"
 }
 
 export EDITOR=vim
