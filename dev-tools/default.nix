@@ -12,6 +12,7 @@ pkgs.stdenv.mkDerivation rec {
     emacs-nox
     git
     nodejs
+    python3
     rustc
     tmux
     vim

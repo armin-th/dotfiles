@@ -36,35 +36,40 @@ values."
       ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
       ;; <M-m f e R> (Emacs style) to install them.
       ;; ----------------------------------------------------------------
-      helm
-      ;; auto-completion
-      ;; better-defaults
       emacs-lisp
       git
-      markdown
-      nixos
-      ;; org
-      (shell
-        :variables
-          shell-default-height 30
-          shell-default-position 'bottom
-      )
-      ;; spell-checking
-      ;; syntax-checking
-      ;; version-control
-      (lsp
-        :variables
-          lsp-lens-enable t
-          lsp-rust-server 'rust-analyzer
-      )
-      rust
+      helm
       (javascript
         :variables
           node-add-modules-path t
           js2-mode-show-strict-warnings nil
           js2-mode-show-parse-errors nil
       )
+      (lsp
+        :variables
+          lsp-lens-enable t
+          lsp-rust-server 'rust-analyzer
+      )
+      markdown
+      nixos
+      rust
+      (shell
+        :variables
+          shell-default-height 30
+          shell-default-position 'bottom
+      )
+      (shell-scripts
+        :variables
+          shell-scripts-backend 'lsp
+      )
+      (treemacs
+        :variables
+          treemacs-use-follow-mode t
+          treemacs-use-filewatch-mode t
+          treemacs-use-git-mode 'simple
+      )
       typescript
+      version-control
     )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these

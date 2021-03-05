@@ -33,6 +33,10 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$PATH
 
+      if [ -z $(which bash-language-server) ]; then
+        npm i -g bash-language-server
+      fi
+
       alias ec=emacs
 
       export EDITOR=emacs
