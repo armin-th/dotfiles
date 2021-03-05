@@ -1,5 +1,5 @@
-#Quick Start
-Step these dot files via
+# Quick Start
+Install these dot files via
 ```
 cd dotfiles
 sh ./install.sh
