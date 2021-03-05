@@ -2,10 +2,6 @@
 
 with pkgs;
 
-let
-  templates = import ./templates.nix { inherit pkgs zsh; };
-in
-
 pkgs.stdenv.mkDerivation rec {
   pname = "dev-tools";
   version = "1.0.0";
@@ -23,9 +19,11 @@ pkgs.stdenv.mkDerivation rec {
     zsh
   ];
 
-  shellHook = ''
-    unset SSL_CERT_FILE
-    tmux -u -f ${templates.tmux-conf} new-session -A -s ${pname} "ZDOTDIR=${templates.z-dot-dir} zsh -i"
-  '';
+  shellHook = 
+    let
+      templates = import ./templates.nix { inherit pkgs zsh pname; };
+    in ''
+      source ${templates.dev-shell}
+    '';
 }
 
