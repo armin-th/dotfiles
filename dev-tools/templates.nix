@@ -55,12 +55,14 @@ rec {
         ${dev-shell-utils-body}
 
         if [ -z $1 ]; then
-          SESSION_NAME=${pname}
+          SESSION_NAME=dev
         else
           SESSION_NAME=$1
         fi
 
-        tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "ZDOTDIR=${z-dot-dir} zsh -i"
+        export ZDOTDIR=${z-dot-dir}
+
+        tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "zsh -i"
       }
     '';
   };
