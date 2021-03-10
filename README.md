@@ -5,6 +5,27 @@ cd dotfiles
 sh ./install.sh
 ```
 
+After restarting your shell you can run
+```
+dsh [optional_session_name] # session name defaults to `dev`
+```
+for a tmux session that is configured with [gnu screen](https://www.gnu.org/software/screen/)-like key bindings.
+
+You can list tmux sessions with
+```
+dsh ls
+```
+
+and kill tmux sessions with
+```
+dsh rm [session_name]
+```
+
+Inside `dsh` you can equickly open emacs configured with [spacemacs](https://www.spacemacs.org/) via the `ec` alias.
+
+# Troubleshooting
+- If you notice freezes or hanging, make sure to [update your packages](https://develop.spacemacs.org/doc/DOCUMENTATION.html#update-packages) after launching emacs and restart emacs.
+
 # dotfiles
 These dot files are my dot files. There are many like them but these are mine! 
 
