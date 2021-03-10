@@ -66,7 +66,7 @@ values."
         :variables
           treemacs-use-follow-mode t
           treemacs-use-filewatch-mode t
-          treemacs-use-git-mode 'simple
+          treemacs-use-git-mode 'extended
       )
       typescript
       version-control

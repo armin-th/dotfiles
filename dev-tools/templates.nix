@@ -29,13 +29,22 @@ rec {
 
       export NPM_GLOBAL=$HOME/.npm-global
 
+      export BASE_PATH=$PATH
+
+      export PATH=$NPM_GLOBAL/bin:$BASE_PATH
+
       npm config set prefix $NPM_GLOBAL
 
-      export PATH=$NPM_GLOBAL/bin:$PATH
-
-      if [ -z $(which bash-language-server) ]; then
-        npm i -g bash-language-server
+      if ! type bash-language-server > /dev/null; then
+        npm i -g bash-language-server@latest
       fi
+
+      NPM_BIN_PATH=$NPM_GLOBAL/bin/npm
+      if [ ! -e "$NPM_BIN_PATH" ]; then
+        npm i -g npm@latest
+      fi
+
+      export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
       alias ec=emacs
 

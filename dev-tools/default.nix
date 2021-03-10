@@ -9,6 +9,7 @@ pkgs.stdenv.mkDerivation rec {
   buildInputs = [
     cargo
     curl
+    editorconfig-core-c
     emacs-nox
     git
     nodejs
