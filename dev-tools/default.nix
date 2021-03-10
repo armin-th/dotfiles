@@ -21,7 +21,7 @@ pkgs.stdenv.mkDerivation rec {
     zsh
   ];
 
-  shellHook = 
+  shellHook =
     let
       templates = import ./templates.nix { inherit pkgs zsh pname; };
     in ''

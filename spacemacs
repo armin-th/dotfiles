@@ -67,6 +67,7 @@ values."
           treemacs-use-follow-mode t
           treemacs-use-filewatch-mode t
           treemacs-use-git-mode 'extended
+          treemacs-file-event-delay 333
       )
       typescript
       version-control
