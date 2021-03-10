@@ -49,6 +49,8 @@ rec {
       alias ec=emacs
 
       export EDITOR=emacs
+
+      export GIT_EDITOR=vim
     '';
   };
 
