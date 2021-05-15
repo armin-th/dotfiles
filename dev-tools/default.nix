@@ -2,6 +2,17 @@
 
 with pkgs;
 
+let
+  python = python3;
+  pyPkgs = (python.withPackages (p: with p; [
+    flake8
+    python-language-server
+    pyls-black
+    pyls-isort
+    pyls-mypy
+  ]));
+in
+
 pkgs.stdenv.mkDerivation rec {
   pname = "dev-tools";
   version = "1.0.0";
@@ -13,7 +24,8 @@ pkgs.stdenv.mkDerivation rec {
     emacs-nox
     git
     nodejs
-    python3
+    pyPkgs
+    python
     rustc
     tmux
     vim

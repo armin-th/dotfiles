@@ -124,4 +124,3 @@ export PIP_CACHE_DIR=$HOME/.pip-temp
 export NIX_INSTALLER_NO_MODIFY_PROFILE=1
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-

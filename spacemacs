@@ -52,6 +52,10 @@ values."
       )
       markdown
       nixos
+      (python
+        :variables
+          python-backend 'lsp
+      )
       rust
       (shell
         :variables
@@ -286,7 +290,13 @@ values."
    ;;                       text-mode
    ;;   :size-limit-kb 1000)
    ;; (default nil)
-   dotspacemacs-line-numbers nil
+   dotspacemacs-line-numbers '(
+     t
+     :disabled-for-modes dired-mode
+     doc-view-mode
+     pdf-view-mode
+     :size-limit-kb 50000
+   )
    ;; Code folding method. Possible values are `evil' and `origami'.
    ;; (default 'evil)
    dotspacemacs-folding-method 'evil
