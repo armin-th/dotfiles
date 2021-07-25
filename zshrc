@@ -115,7 +115,7 @@ export PATH=$HOME/.local/bin:$PATH
 
 export PATH=/usr/local/cuda/bin:$PATH
 
-export LD_LIBRARY_PATH=$HOME/.local/lib/cuda
+export LD_LIBRARY_PATH=/usr/local/cuda-11.4/targets/x86_64-linux/lib/stubs:/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
 # Python pip temp install directory
 export TEMPDIR=$HOME/.pip-temp

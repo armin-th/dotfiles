@@ -24,8 +24,10 @@ pkgs.stdenv.mkDerivation rec {
     emacs-nox
     git
     nodejs
+    pkg-config
     pyPkgs
     python
+    rust-analyzer
     rustc
     tmux
     vim

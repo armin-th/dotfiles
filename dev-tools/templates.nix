@@ -46,7 +46,9 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
-      alias ec=emacs
+      alias nxs="nix-shell"
+      alias ec="emacs"
+      alias nec="nix-shell --run emacs"
 
       export EDITOR=emacs
 
