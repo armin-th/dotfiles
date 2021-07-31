@@ -3,7 +3,7 @@
 with pkgs;
 
 let
-  python = python3;
+  python = python38;
   pyPkgs = (python.withPackages (p: with p; [
     flake8
     python-language-server
@@ -29,6 +29,7 @@ pkgs.stdenv.mkDerivation rec {
     python
     rust-analyzer
     rustc
+    rustfmt
     tmux
     vim
     wget

@@ -46,7 +46,7 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
-      alias nxs="nix-shell"
+      alias nxs="nix-shell --command 'NIX_ZSH_SHELL=1 zsh'"
       alias ec="emacs"
       alias nec="nix-shell --run emacs"
 

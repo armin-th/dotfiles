@@ -14,7 +14,7 @@ SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P  )"
 
 if [ ! -d $HOME/.oh-my-zsh ]; then
   echo "installing ohmyzsh"
-  RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  nix-shell $SCRIPT_PATH/dev-tools --command 'RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
 fi
 
 echo "copying dev-tools derivation to home directory"
