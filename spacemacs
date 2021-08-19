@@ -38,6 +38,7 @@ values."
       ;; ----------------------------------------------------------------
       emacs-lisp
       git
+      (haskell :variables haskell-completion-backend 'lsp)
       helm
       (javascript
         :variables

@@ -23,6 +23,14 @@ pkgs.stdenv.mkDerivation rec {
     editorconfig-core-c
     emacs-nox
     git
+    haskellPackages.apply-refact
+    haskellPackages.cabal-install
+    haskellPackages.ghc
+    haskellPackages.hasktags
+    haskellPackages.hlint
+    haskellPackages.hoogle
+    haskellPackages.stylish-haskell
+    nixfmt
     nodejs
     pkg-config
     pyPkgs
