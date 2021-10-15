@@ -3,7 +3,126 @@
 with pkgs;
 
 let
-  python = python38;
+  python = python38.override({
+    self = python;
+    packageOverrides = self: super: rec {
+      parso = (
+        super.buildPythonPackage rec {
+          pname = "parso";
+          version = "0.7.1";
+
+          buildInputs = [super.pytest];
+
+          src = super.fetchPypi {
+            inherit pname version;
+            sha256 = "caba44724b994a8a5e086460bb212abc5a8bc46951bf4a9a1210745953622eb9";
+          };
+        }
+      );
+      jedi = (
+        super.buildPythonPackage rec {
+          pname = "jedi";
+          version = "0.17.2";
+
+          buildInputs = [parso];
+
+          doCheck = false;
+
+          src = super.fetchPypi {
+            inherit pname version;
+            sha256 = "86ed7d9b750603e4ba582ea8edc678657fb4007894a12bcf6f4bb97892f31d20";
+          };
+        }
+      );
+      python-lsp-server = (
+        super.buildPythonPackage rec {
+          pname = "python-lsp-server";
+          version = "1.2.4";
+
+          buildInputs = [
+            jedi
+            parso
+            super.autopep8
+            super.flake8
+            super.flaky
+            super.mccabe
+            super.mock
+            super.pluggy
+            super.pycodestyle
+            super.pydocstyle
+            super.pyflakes
+            super.pylint
+            super.pytest
+            super.python-jsonrpc-server
+            super.python-lsp-jsonrpc
+            super.rope
+            super.yapf
+          ];
+
+          src = super.fetchPypi {
+            inherit pname version;
+            sha256 = "007278c4419339bd3a61ca6d7eb8648ead28b5f1b9eba3b6bae8540046116335";
+          };
+        }
+      );
+      python-language-server = (
+        super.buildPythonPackage rec {
+          pname = "python-language-server";
+          version = "0.36.2";
+
+          buildInputs = [
+            jedi
+            parso
+            super.autopep8
+            super.flake8
+            super.flaky
+            super.mccabe
+            super.mock
+            super.pluggy
+            super.pycodestyle
+            super.pydocstyle
+            super.pyflakes
+            super.pylint
+            super.pytest
+            super.python-jsonrpc-server
+            super.python-lsp-jsonrpc
+            super.rope
+            super.yapf
+          ];
+
+          src = super.fetchPypi {
+            inherit pname version;
+            sha256 = "9984c84a67ee2c5102c8e703215f407fcfa5e62b0ae86c9572d0ada8c4b417b0";
+          };
+        }
+      );
+      pyls-black = super.pyls-black.overridePythonAttrs(old: {
+        buildInputs = (old.buildInputs or []) ++ [
+          jedi
+          parso
+          super.python-jsonrpc-server
+        ];
+      });
+      pyls-isort = super.pyls-isort.overridePythonAttrs(old: {
+        buildInputs = (old.buildInputs or []) ++ [
+          jedi
+          parso
+          super.pluggy
+          super.python-jsonrpc-server
+          super.python-lsp-jsonrpc
+          super.ujson
+        ];
+      });
+      pyls-mypy = super.pyls-mypy.overridePythonAttrs(old: {
+        buildInputs = (old.buildInputs or []) ++ [
+          jedi
+          parso
+          super.pluggy
+          super.python-jsonrpc-server
+        ];
+      });
+    };
+  });
   pyPkgs = (python.withPackages (p: with p; [
     flake8
     python-language-server
@@ -29,10 +148,13 @@ pkgs.stdenv.mkDerivation rec {
     haskellPackages.hasktags
     haskellPackages.hlint
     haskellPackages.hoogle
+    haskellPackages.proto-lens-protoc
+    haskellPackages.stack
     haskellPackages.stylish-haskell
     nixfmt
     nodejs
     pkg-config
+    protobuf
     pyPkgs
     python
     rust-analyzer
@@ -51,4 +173,3 @@ pkgs.stdenv.mkDerivation rec {
       source ${templates.dev-shell}
     '';
 }
-
