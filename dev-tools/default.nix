@@ -125,10 +125,15 @@ let
   });
   pyPkgs = (python.withPackages (p: with p; [
     flake8
-    python-language-server
+    jedi
+    parso
+    pluggy
     pyls-black
     pyls-isort
     pyls-mypy
+    python-language-server
+    python-lsp-jsonrpc
+    setuptools
   ]));
 in
 
