@@ -46,6 +46,7 @@ values."
           js2-mode-show-strict-warnings nil
           js2-mode-show-parse-errors nil
       )
+      jsonnet
       (lsp
         :variables
           lsp-lens-enable t
@@ -53,6 +54,7 @@ values."
       )
       markdown
       nixos
+      ocaml
       (python
         :variables
           python-backend 'lsp
@@ -74,7 +76,9 @@ values."
           treemacs-use-git-mode 'extended
           treemacs-file-event-delay 333
       )
-      typescript
+      (typescript
+        :variables
+          typescript-fmt-tool 'typescript-formatter)
       version-control
     )
    ;; List of additional packages that will be installed without being

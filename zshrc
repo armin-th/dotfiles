@@ -116,6 +116,7 @@ function dsh() {
 
 export EDITOR=vim
 
+export PATH=$HOME/.npm-global/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 
 export PATH=/usr/local/cuda/bin:$PATH
