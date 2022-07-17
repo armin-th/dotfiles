@@ -125,24 +125,6 @@ let
       python-lsp-jsonrpc
       setuptools
     ]));
-  ocamlclean = callPackage (
-    { lib, fetchurl, buildDunePackage }:
-      buildDunePackage rec {
-        pname = "ocamlclean";
-        version = "2.2";
-
-        useDune2 = true;
-
-        minimalOCamlVersion = "4.13";
-
-        src = fetchurl {
-          url =
-            "http://www.algo-prog.info/ocapic/web/lib/exe/fetch.php?media=ocapic:ocamlclean-2.2.tar.bz2";
-          sha256 = "09ygcxxd5warkdzz17rgpidrd0pg14cy2svvnvy1hna080lzg7vp";
-
-        };
-      }
-    );
 
 in pkgs.stdenv.mkDerivation rec {
   pname = "dev-tools";
@@ -150,26 +132,13 @@ in pkgs.stdenv.mkDerivation rec {
 
   buildInputs = [
     cargo
+    clang
     curl
     editorconfig-core-c
     emacs-nox
     git
-    haskellPackages.apply-refact
-    haskellPackages.cabal-install
-    haskellPackages.ghc
-    haskellPackages.hasktags
-    haskellPackages.hlint
-    haskellPackages.hoogle
-    haskellPackages.proto-lens-protoc
-    haskellPackages.stack
-    haskellPackages.stylish-haskell
     jsonnet
-    ocaml
-    ocamlPackages.merlin
-    ocamlPackages.ocamlbuild
-    ocamlPackages.ocp-indent
-    ocamlPackages.utop
-    ocamlformat
+    neovim
     nixfmt
     nodejs
     pkg-config

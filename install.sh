@@ -28,19 +28,3 @@ cp $SCRIPT_PATH/bashrc $HOME/.bashrc
 cp $SCRIPT_PATH/spacemacs $HOME/.spacemacs
 cp $SCRIPT_PATH/tmux.conf $HOME/.tmux.conf
 cp $SCRIPT_PATH/vimrc $HOME/.vimrc
-
-HLS_VERSION="1.3.0"
-HLS_GHC_VERSION="8.10.4"
-HLS_BIN_URL="https://github.com/haskell/haskell-language-server/releases/download/${HLS_VERSION}/haskell-language-server-Linux-${HLS_GHC_VERSION}.gz"
-HLS_BIN_NAME="haskell-language-server-wrapper"
-LOCAL_PREFIX="$HOME/.local"
-if [ ! -d "$LOCAL_PREFIX/bin" ]; then
-  mkdir -p $LOCAL_PREFIX/bin
-fi
-if [ ! -f "$LOCAL_PREFIX/bin/$HLS_BIN_NAME" ]; then
-  echo "installing haskell-language-server-wrapper to $LOCAL_PREFIX/bin"
-  curl -L $HLS_BIN_URL | gunzip > $LOCAL_PREFIX/bin/$HLS_BIN_NAME
-  chmod +x $LOCAL_PREFIX/bin/$HLS_BIN_NAME
-fi
-
-

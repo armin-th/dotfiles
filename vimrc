@@ -74,14 +74,12 @@ let g:javascript_plugin_flow = 1
 
 let g:ale_linters = {
 \   'javascript': ['eslint', 'tslint'],
-\   'haskell': ['hie'],
 \   'rust': ['rls'],
 \   'java': [],
 \   'nim': ['nimpretty'],
 \}
 
 let g:ale_fixers = {
-\   'haskell': ['stylish-haskell'],
 \   'python': ['autopep8'],
 \   'javascript': ['prettier'],
 \   'typescript': ['prettier'],
