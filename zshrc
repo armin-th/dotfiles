@@ -107,11 +107,11 @@ source $ZSH/oh-my-zsh.sh
 
 function dsh() {
   if [ "$NIX_DEV_TOOLS_SHELL" = "1" ]; then
-    dev-shell-utils $@
+    dev-shell $@
     return
   fi
 
-  nix-shell $HOME/.dev-tools/default.nix --command "dev-shell $*"
+  nix develop $HOME/.dev-tools --command dev-shell $@
 }
 
 export EDITOR=vim

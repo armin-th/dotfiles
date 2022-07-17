@@ -1,33 +1,17 @@
-{ pkgs, zsh, pname }:
-
-with pkgs;
-
-let
-  dev-shell-utils-body = ''
-    if [ "$1" = "ls" ]; then
-      tmux ls
-      return
-    fi
-
-    if [ "$1" = "rm" ]; then
-      tmux kill-session -t $2
-      return
-    fi
-  '';
-in
+{ pkgs, sbcl, zsh, defaultSessionName ? "dev" }:
 
 rec {
-  z-dot-dir = writeTextFile {
+  z-dot-dir = pkgs.writeTextFile {
     name = "zsh-dot-dir";
     destination = "/.zshrc";
     text = ''
       export NIX_DEV_TOOLS_SHELL=1
 
-      source ${dev-shell-utils}
-
       source $HOME/.zshrc
 
       export NPM_GLOBAL=$HOME/.npm-global
+
+      export SBCL_HOME=${sbcl.outPath}/lib/sbcl
 
       export BASE_PATH=$PATH
 
@@ -46,9 +30,9 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
-      alias nxs="nix-shell --command 'NIX_ZSH_SHELL=1 zsh'"
+      alias nxs="nix develop --command 'NIX_ZSH_SHELL=1 zsh'"
       alias ec="emacs"
-      alias nec="nix-shell --run emacs"
+      alias nec="nix develop --command emacs"
 
       export EDITOR=emacs
 
@@ -56,7 +40,7 @@ rec {
     '';
   };
 
-  tmux-conf = writeTextFile {
+  tmux-conf = pkgs.writeTextFile {
     name="tmux.conf";
     text = ''
       source-file $HOME/.tmux.conf
@@ -65,31 +49,32 @@ rec {
     '';
   };
 
-  dev-shell = writeTextFile {
+  dev-shell = pkgs.writeTextFile rec {
     name = "dev-shell";
+    executable = true;
+    destination = "/bin/${name}";
     text = ''
-      function dev-shell() {
-        ${dev-shell-utils-body}
+      if [ "$1" = "ls" ]; then
+        tmux ls
+        exit 0
+      fi
 
-        if [ -z $1 ]; then
-          SESSION_NAME=dev
-        else
-          SESSION_NAME=$1
-        fi
+      if [ "$1" = "rm" ]; then
+        tmux kill-session -t $2
+        exit 0
+      fi
 
-        export ZDOTDIR=${z-dot-dir}
+      if [ "$NIX_DEV_TOOLS_SHELL" = "1" ]; then
+        exit 0
+      fi
 
-        tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "zsh -i"
-      }
-    '';
-  };
+      if [ -z $1 ]; then
+        SESSION_NAME=${defaultSessionName}
+      else
+        SESSION_NAME=$1
+      fi
 
-  dev-shell-utils = writeTextFile {
-    name = "dev-shell-utils";
-    text = ''
-      function dev-shell-utils() {
-        ${dev-shell-utils-body}
-      }
+      tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "ZDOTDIR=${z-dot-dir} zsh -i"
     '';
   };
 }
