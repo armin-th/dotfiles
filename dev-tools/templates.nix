@@ -30,7 +30,7 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
-      alias nxs="nix develop --command 'NIX_ZSH_SHELL=1 zsh'"
+      alias nxd="nix develop --command 'NIX_ZSH_SHELL=1 zsh'"
       alias ec="emacs"
       alias nec="nix develop --command emacs"
 
