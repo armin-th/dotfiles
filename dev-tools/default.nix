@@ -45,6 +45,16 @@ let
       dontStrip = true;
     });
 
+  ZeroTierOne = stdenv.mkDerivation rec {
+    pname = "ZeroTierOne";
+    version = "1.10.1";
+    buildInputs = [ clang ];
+    src = builtins.fetchTarball {
+      url = "https://github.com/zerotier/ZeroTierOne/archive/refs/tags/${version}.tar.gz";
+      sha256 = "1sbcn46k4hxv2g6aqksg4mhqk238h07lc943p5shjdf09ry2ajb3";
+    };
+  };
+
   ghc-name = "${haskellPackages.ghc.pname}-${haskellPackages.ghc.version}";
 
   system-name = stdenv.targetPlatform.system;
@@ -85,6 +95,7 @@ in mkShell rec {
     vim
     wget
     zsh
+    ZeroTierOne
   ];
 
   shellHook = ''
