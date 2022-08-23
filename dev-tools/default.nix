@@ -29,7 +29,7 @@ let
       dontFixup = true;
     };
 
-  templates = import ./templates.nix { inherit pkgs sbcl zsh; };
+  templates = import ./templates.nix { inherit pkgs sbcl zsh bun; };
 
   haskellPackages = haskell.packages.ghc902;
 
@@ -54,6 +54,7 @@ in mkShell rec {
   version = "1.0.0";
 
   buildInputs = [
+    bun
     cargo
     clang
     curl

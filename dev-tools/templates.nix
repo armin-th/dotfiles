@@ -1,4 +1,4 @@
-{ pkgs, sbcl, zsh, defaultSessionName ? "dev" }:
+{ pkgs, sbcl, zsh, bun, defaultSessionName ? "dev" }:
 
 rec {
   z-dot-dir = pkgs.writeTextFile {
@@ -8,6 +8,12 @@ rec {
       export NIX_DEV_TOOLS_SHELL=1
 
       source $HOME/.zshrc
+
+      if [ ! -e "$HOME/.local/etc/bun-completions.sh" ]; then
+        mkdir -p $HOME/.local/etc
+        ${bun.outPath}/bin/bun completions > $HOME/.local/etc/bun-completions.sh
+      fi;
+      source $HOME/.local/etc/bun-completions.sh
 
       export NPM_GLOBAL=$HOME/.npm-global
 
@@ -74,7 +80,7 @@ rec {
         SESSION_NAME=$1
       fi
 
-      tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "ZDOTDIR=${z-dot-dir} zsh -i"
+      tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "ZDOTDIR=${z-dot-dir} SHELL=${zsh.outPath}/bin/zsh zsh -i"
     '';
   };
 }
