@@ -14,7 +14,23 @@ SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P  )"
 
 if [ ! -d $HOME/.oh-my-zsh ]; then
   echo "installing ohmyzsh"
-  nix-shell $SCRIPT_PATH/dev-tools --command 'RUNZSH=no sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"'
+  nix develop $SCRIPT_PATH/dev-tools --command curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
+fi
+
+if [ ! -d $HOME/.emacs.d ]; then
+  echo "installing spacemacs"
+  git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
+fi
+
+if [ ! -d $HOME/.tmux/plugins/tpm ]; then
+  echo "installing Tmux Plugin Management"
+  git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
+
+if [ ! -e $HOME/.local/bin/xdg-open ] && [ ! -z $WSLENV ]; then
+  echo "installing wsl-open"
+  cp $SCRIPT_PATH/wsl-open/wsl-open $HOME/.local/bin/xdg-open # See https://github.com/4U6U57/wsl-open
+  chmod u+x $HOME/.local/bin/xdg-open
 fi
 
 echo "copying dev-tools derivation to home directory"
