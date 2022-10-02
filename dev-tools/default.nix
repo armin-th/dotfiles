@@ -69,6 +69,8 @@ in mkShell rec {
     haskellPackages.stack
     haskellPackages.stylish-haskell
     hls
+    ipfs
+    jq
     jsonnet
     nixfmt
     nodejs
@@ -81,13 +83,14 @@ in mkShell rec {
     rustfmt
     sbcl
     sbcl-buildapp
+    silver-searcher
     templates.dev-shell
     tmux
     vim
     wget
-    zsh
     zig
     zls
+    zsh
   ];
 
   shellHook = ''
