@@ -111,6 +111,13 @@ function dsh() {
     return
   fi
 
+  if [ ! -e $(nix eval $HOME/.dev-tools --raw) ]; then
+    echo "Building dev-tools derivation"
+    export NIXPKGS_ALLOW_BROKEN=1
+    nix build $HOME/.dev-tools --impure --cores 0 --max-jobs auto --no-link
+    unset NIXPKGS_ALLOW_BROKEN
+  fi
+
   nix develop $HOME/.dev-tools --command dev-shell $@
 }
 

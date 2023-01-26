@@ -39,10 +39,11 @@ rec {
       alias nxd="nix develop --command 'NIX_ZSH_SHELL=1 zsh'"
       alias ec="emacs"
       alias nec="nix develop --command emacs"
+      alias nnvim="nix develop --command nvim"
 
-      export EDITOR=emacs
+      export EDITOR=nvim
 
-      export GIT_EDITOR=vim
+      export GIT_EDITOR=nvim
     '';
   };
 

@@ -44,3 +44,5 @@ cp $SCRIPT_PATH/bashrc $HOME/.bashrc
 cp $SCRIPT_PATH/spacemacs $HOME/.spacemacs
 cp $SCRIPT_PATH/tmux.conf $HOME/.tmux.conf
 cp $SCRIPT_PATH/vimrc $HOME/.vimrc
+mkdir -p $HOME/.config/nvim
+cp $SCRIPT_PATH/nvim-config.lua $HOME/.config/nvim/init.lua
