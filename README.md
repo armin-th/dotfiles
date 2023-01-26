@@ -21,10 +21,10 @@ and kill tmux sessions with
 dsh rm [session_name]
 ```
 
-Inside `dsh` you can quickly open emacs configured with [spacemacs](https://www.spacemacs.org/) via the `ec` alias.
+Inside `dsh` you can quickly open emacs configured with [spacemacs](https://www.spacemacs.org/) via the `ec` alias. You may also run the aliases `nec` or `nnvim` to run emacs or neovim respectively in a nix shell inside a directory with a `default.nix` or `shell.nix`.
 
 # Troubleshooting
-- If you notice freezes or hanging, make sure to [update your packages](https://develop.spacemacs.org/doc/DOCUMENTATION.html#update-packages) after launching emacs and restart emacs.
+- If you notice freezes or hanging in emacs, make sure to [update your packages](https://develop.spacemacs.org/doc/DOCUMENTATION.html#update-packages) after launching emacs and restart emacs.
 
 # dotfiles
 These dot files are my dot files. There are many like them but these are mine! 

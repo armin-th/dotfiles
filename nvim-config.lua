@@ -9,6 +9,15 @@ local ensure_packer = function()
   return false
 end
 
+-- Functional wrapper for mapping custom keybindings
+function map(mode, lhs, rhs, opts)
+  local options = { noremap = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
 local packer_bootstrap = ensure_packer()
 
 return require('packer').startup(function(use)
@@ -36,6 +45,7 @@ return require('packer').startup(function(use)
     },
     config = function()
       require("nvim-tree").setup()
+      map('n', "<C-n>", ":NvimTreeToggle<CR>")
     end
   }
 
