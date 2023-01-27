@@ -48,7 +48,7 @@ rec {
   };
 
   tmux-conf = pkgs.writeTextFile {
-    name="tmux.conf";
+    name = "tmux.conf";
     text = ''
       source-file $HOME/.tmux.conf
 
