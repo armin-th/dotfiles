@@ -1,8 +1,18 @@
-{ pkgs ? import <nixpkgs> { } }:
+{ pkgs, naersk-lib }:
 
 with pkgs;
 
 let
+  rnix = naersk-lib.buildPackage {
+    pname = "rnix-lsp";
+    root = builtins.fetchTarball {
+      url="https://github.com/nix-community/rnix-lsp/archive/refs/tags/v0.2.5.tar.gz";
+      sha256="128h2jih911wvf2pa5g7ryviylapbzvi446xw92qkf8xz3cn6yjr";
+    };
+    doCheck = false;
+    checkInputs = [ pkgs.nix ];
+  };
+
   python = python310;
   pyPkgs = (
     python.withPackages (p: with p; [
@@ -65,12 +75,14 @@ in mkShell rec {
     ipfs
     jq
     jsonnet
+    neovim
     nixfmt
     nodejs
     pkg-config
     protobuf
     pyPkgs
     python
+    rnix
     rust-analyzer
     rustc
     rustfmt
@@ -80,7 +92,6 @@ in mkShell rec {
     templates.dev-shell
     tmux
     vim
-    neovim
     wget
     zig
     zls
