@@ -16,11 +16,11 @@ let
   python = python310;
   pyPkgs = (
     python.withPackages (p: with p; [
-      python-lsp-server
-      rope
-      pyflakes
       mccabe
       pycodestyle
+      pyflakes
+      python-lsp-server
+      rope
       yapf
     ])
   );
@@ -98,6 +98,7 @@ mkShell rec {
     sumneko-lua-language-server
     templates.dev-shell
     tmux
+    unzip
     vim
     wget
     zig

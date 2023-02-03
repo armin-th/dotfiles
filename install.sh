@@ -22,6 +22,11 @@ if [ ! -d $HOME/.emacs.d ]; then
   git clone https://github.com/syl20bnr/spacemacs ~/.emacs.d
 fi
 
+if [ ! -d $HOME/.config/nvim ]; then
+  echo "installing NvChad"
+  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+fi
+
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then
   echo "installing Tmux Plugin Management"
   git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -44,5 +49,5 @@ cp $SCRIPT_PATH/bashrc $HOME/.bashrc
 cp $SCRIPT_PATH/spacemacs $HOME/.spacemacs
 cp $SCRIPT_PATH/tmux.conf $HOME/.tmux.conf
 cp $SCRIPT_PATH/vimrc $HOME/.vimrc
-mkdir -p $HOME/.config/nvim
-cp $SCRIPT_PATH/nvim-config.lua $HOME/.config/nvim/init.lua
+cp $SCRIPT_PATH/nvim-chadrc.lua $HOME/.config/nvim/lua/custom/chadrc.lua
+
