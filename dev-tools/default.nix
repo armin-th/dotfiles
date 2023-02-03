@@ -17,6 +17,11 @@ let
   pyPkgs = (
     python.withPackages (p: with p; [
       python-lsp-server
+      rope
+      pyflakes
+      mccabe
+      pycodestyle
+      yapf
     ])
   );
 

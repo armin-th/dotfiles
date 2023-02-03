@@ -20,7 +20,7 @@ return require('packer').startup(function(use)
   -- Plugins here
   use 'wbthomason/packer.nvim'
 
-  use({
+  use {
     'projekt0n/github-nvim-theme', tag = 'v0.0.7',
     config = function()
       -- disable netrw at the very start of your init.lua (strongly advised)
@@ -32,7 +32,13 @@ return require('packer').startup(function(use)
 
       require('github-theme').setup()
     end
-  })
+  }
+  use {
+  	"windwp/nvim-autopairs",
+    config = function()
+      require("nvim-autopairs").setup {}
+    end
+  }
 
   use {
     'nvim-tree/nvim-tree.lua',
@@ -89,6 +95,9 @@ return require('packer').startup(function(use)
       end
 
       -- Configure LSP servers here
+      require('lspconfig')['pylsp'].setup {
+        on_attach = on_attach,
+      }
       require('lspconfig')['rnix'].setup{
         on_attach = on_attach,
       }
