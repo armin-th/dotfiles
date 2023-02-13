@@ -105,6 +105,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+alias dcc="docker compose"
+alias dccu="docker compose up"
+alias dccd="docker compose down"
+alias dcce="docker compose exec"
+alias dccr="docker compose run"
+
 function dsh() {
   if [ "$NIX_DEV_TOOLS_SHELL" = "1" ]; then
     dev-shell $@

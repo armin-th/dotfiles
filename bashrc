@@ -112,6 +112,12 @@ if ! shopt -oq posix; then
   fi
 fi
 
+alias dcc="docker compose"
+alias dccu="docker compose up"
+alias dccd="docker compose down"
+alias dcce="docker compose exec"
+alias dccr="docker compose run"
+
 function dsh() {
   if [ "$NIX_DEV_TOOLS_SHELL" = "1" ]; then
     dev-shell $@

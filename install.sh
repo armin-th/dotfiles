@@ -24,7 +24,8 @@ fi
 
 if [ ! -d $HOME/.config/nvim ]; then
   echo "installing NvChad"
-  git clone https://github.com/NvChad/NvChad ~/.config/nvim --depth 1
+  git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1
+  mkdir -p $HOME/.config/nvim/lua/custom
 fi
 
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then
@@ -50,4 +51,3 @@ cp $SCRIPT_PATH/spacemacs $HOME/.spacemacs
 cp $SCRIPT_PATH/tmux.conf $HOME/.tmux.conf
 cp $SCRIPT_PATH/vimrc $HOME/.vimrc
 cp $SCRIPT_PATH/nvim-chadrc.lua $HOME/.config/nvim/lua/custom/chadrc.lua
-

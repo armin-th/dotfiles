@@ -95,7 +95,6 @@ mkShell rec {
     sbcl
     sbcl-buildapp
     silver-searcher
-    sumneko-lua-language-server
     templates.dev-shell
     tmux
     unzip
