@@ -150,6 +150,11 @@ export LD_LIBRARY_PATH=$HOME/.local/lib/cuda:$LD_LIBRARY_PATH
 export TEMPDIR=$HOME/.pip-temp
 export PIP_CACHE_DIR=$HOME/.pip-temp
 
+# Rust path
+if [ -f $HOME/.cargo/env ]; then
+  source $HOME/.cargo/env
+fi
+
 export NIX_INSTALLER_NO_MODIFY_PROFILE=1
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer

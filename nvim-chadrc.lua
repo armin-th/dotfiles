@@ -19,6 +19,7 @@ M.plugins = {
         "rnix",
         "pylsp",
         "hls",
+        "rust_analyzer",
       }
 
       for _, lsp in ipairs(servers) do
