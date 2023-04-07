@@ -23,9 +23,9 @@ if [ ! -d $HOME/.emacs.d ]; then
 fi
 
 if [ ! -d $HOME/.config/nvim ]; then
-  echo "installing NvChad"
-  git clone https://github.com/NvChad/NvChad $HOME/.config/nvim --depth 1
-  mkdir -p $HOME/.config/nvim/lua/custom
+  echo "installing AstroNvim"
+  git clone --depth 1 https://github.com/AstroNvim/AstroNvim $HOME/.config/nvim
+  mkdir -p $HOME/.config/nvim/lua/user
 fi
 
 if [ ! -d $HOME/.tmux/plugins/tpm ]; then
@@ -35,8 +35,14 @@ fi
 
 if [ ! -e $HOME/.local/bin/xdg-open ] && [ ! -z $WSLENV ]; then
   echo "installing wsl-open"
-  cp $SCRIPT_PATH/wsl-open/wsl-open $HOME/.local/bin/xdg-open # See https://github.com/4U6U57/wsl-open
+  cp $SCRIPT_PATH/wsl-utils/wsl-open $HOME/.local/bin/xdg-open # See https://github.com/4U6U57/wsl-open
   chmod u+x $HOME/.local/bin/xdg-open
+fi
+
+if [ ! -e $HOME/.local/bin/xclip ] && [ ! -z $WSLENV ]; then
+  echo "installing wsl-copy"
+  cp $SCRIPT_PATH/wsl-utils/wsl-copy $HOME/.local/bin/xclip # See https://github.com/4U6U57/wsl-open
+  chmod u+x $HOME/.local/bin/xclip
 fi
 
 if [ ! -d $HOME/.rustup ]; then
@@ -47,7 +53,7 @@ if [ ! -d $HOME/.rustup ]; then
   ln -s $(rustup which rust-analyzer) $HOME/.cargo/bin/rust-analyzer
 fi
 
-if [ ! -f $HOME/.cargo/wasm-pack  ]; then
+if [ ! -e $HOME/.cargo/bin/wasm-pack  ]; then
   curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
 fi
 
@@ -62,4 +68,4 @@ cp $SCRIPT_PATH/bashrc $HOME/.bashrc
 cp $SCRIPT_PATH/spacemacs $HOME/.spacemacs
 cp $SCRIPT_PATH/tmux.conf $HOME/.tmux.conf
 cp $SCRIPT_PATH/vimrc $HOME/.vimrc
-cp $SCRIPT_PATH/nvim-chadrc.lua $HOME/.config/nvim/lua/custom/chadrc.lua
+cp $SCRIPT_PATH/astronvim-init.lua $HOME/.config/nvim/lua/user/init.lua

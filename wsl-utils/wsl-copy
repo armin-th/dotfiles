@@ -1,0 +1,2 @@
+#!/usr/bin/bash
+printf $(</dev/stdin) | clip.exe
