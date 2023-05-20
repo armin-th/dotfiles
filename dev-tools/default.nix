@@ -46,15 +46,15 @@ let
 
   templates = import ./templates.nix { inherit pkgs sbcl zsh bun; };
 
-  # haskellPackages = haskell.packages.ghc902.extend (self: super: {
-  #   fourmolu = super.fourmolu.overrideAttrs (old: {
-  #     version = "0.10.1.0";
-  #   });
-  # });
+  haskellPackages = haskell.packages.ghc902.extend (self: super: {
+    fourmolu = super.fourmolu.overrideAttrs (old: {
+      version = "0.10.1.0";
+    });
+  });
 
-  # hls = haskellPackages.haskell-language-server;
+  hls = haskellPackages.haskell-language-server;
 
-  # ghc-name = "${haskellPackages.ghc.pname}-${haskellPackages.ghc.version}";
+  ghc-name = "${haskellPackages.ghc.pname}-${haskellPackages.ghc.version}";
 
   system-name = stdenv.targetPlatform.system;
 
@@ -71,13 +71,13 @@ mkShell rec {
     editorconfig-core-c
     emacs-nox
     git
-    # haskellPackages.apply-refact
-    # haskellPackages.cabal-install
-    # haskellPackages.hasktags
-    # haskellPackages.hlint
-    # haskellPackages.hoogle
-    # haskellPackages.stylish-haskell
-    # hls
+    haskellPackages.apply-refact
+    haskellPackages.cabal-install
+    haskellPackages.hasktags
+    haskellPackages.hlint
+    haskellPackages.hoogle
+    haskellPackages.stylish-haskell
+    hls
     ipfs
     jq
     jsonnet
@@ -103,7 +103,7 @@ mkShell rec {
     zsh
   ];
 
-  # shellHook = ''
-  #   export LD_LIBRARY_PATH=${hls.outPath}/lib/${ghc-name}/${system-name}-${ghc-name}:$LD_LIBRARY_PATH
-  # '';
+  shellHook = ''
+    export LD_LIBRARY_PATH=${hls.outPath}/lib/${ghc-name}/${system-name}-${ghc-name}:$LD_LIBRARY_PATH
+  '';
 }

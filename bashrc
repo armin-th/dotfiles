@@ -124,14 +124,14 @@ function dsh() {
     return
   fi
 
-  if [ ! -e $(nix eval $HOME/.dev-tools --raw) ]; then
-    echo "Building dev-tools derivation"
-    export NIXPKGS_ALLOW_BROKEN=1
-    nix build $HOME/.dev-tools --impure --cores 0 --max-jobs auto --no-link
-    unset NIXPKGS_ALLOW_BROKEN
-  fi
-
   nix develop $HOME/.dev-tools --command dev-shell $@
+}
+
+function dsh-build() {
+  echo "Building dev-tools derivation"
+  export NIXPKGS_ALLOW_BROKEN=1
+  nix build $HOME/.dev-tools --impure --cores 0 --max-jobs auto --no-link
+  unset NIXPKGS_ALLOW_BROKEN
 }
 
 export EDITOR=vim
@@ -149,11 +149,6 @@ export LD_LIBRARY_PATH=$HOME/.local/lib/cuda:$LD_LIBRARY_PATH
 # Python pip temp install directory
 export TEMPDIR=$HOME/.pip-temp
 export PIP_CACHE_DIR=$HOME/.pip-temp
-
-# Rust path
-if [ -f $HOME/.cargo/env ]; then
-  source $HOME/.cargo/env
-fi
 
 export NIX_INSTALLER_NO_MODIFY_PROFILE=1
 

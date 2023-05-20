@@ -45,18 +45,6 @@ if [ ! -e $HOME/.local/bin/xclip ] && [ ! -z $WSLENV ]; then
   chmod u+x $HOME/.local/bin/xclip
 fi
 
-if [ ! -d $HOME/.rustup ]; then
-  curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --default-toolchain nightly -y
-  source ~/.cargo/env
-  rustup component add rust-src
-  rustup component add rust-analyzer
-  ln -s $(rustup which rust-analyzer) $HOME/.cargo/bin/rust-analyzer
-fi
-
-if [ ! -e $HOME/.cargo/bin/wasm-pack  ]; then
-  curl https://rustwasm.github.io/wasm-pack/installer/init.sh -sSf | sh
-fi
-
 echo "copying dev-tools derivation to home directory"
 rm -rf $HOME/.dev-tools
 cp -r $SCRIPT_PATH/dev-tools $HOME/.dev-tools
