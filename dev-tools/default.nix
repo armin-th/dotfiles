@@ -70,6 +70,7 @@ mkShell rec {
     curl
     editorconfig-core-c
     emacs-nox
+    emscripten
     git
     haskellPackages.apply-refact
     haskellPackages.cabal-install
