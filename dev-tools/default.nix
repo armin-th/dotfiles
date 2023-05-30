@@ -65,14 +65,15 @@ mkShell rec {
 
   buildInputs = [
     alsa-lib
-    bun
     clang
+    cmake
     curl
     editorconfig-core-c
     emacs-nox
     emscripten
     git
     haskellPackages.apply-refact
+    haskellPackages.cabal-fmt
     haskellPackages.cabal-install
     haskellPackages.hasktags
     haskellPackages.hlint
@@ -83,6 +84,7 @@ mkShell rec {
     jq
     jsonnet
     neovim
+    ninja
     nixfmt
     nodejs
     pkg-config

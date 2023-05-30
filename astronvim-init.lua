@@ -9,7 +9,7 @@ return {
     },
     config = {
       ["hls"] = {
-        filetypes = { 'haskell', 'lhaskell', 'cabal' },
+        filetypes = { 'haskell', 'lhaskell' },
       },
     },
   },

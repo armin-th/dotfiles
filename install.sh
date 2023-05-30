@@ -39,11 +39,12 @@ if [ ! -e $HOME/.local/bin/xdg-open ] && [ ! -z $WSLENV ]; then
   chmod u+x $HOME/.local/bin/xdg-open
 fi
 
-if [ ! -e $HOME/.local/bin/xclip ] && [ ! -z $WSLENV ]; then
-  echo "installing wsl-copy"
-  cp $SCRIPT_PATH/wsl-utils/wsl-copy $HOME/.local/bin/xclip # See https://github.com/4U6U57/wsl-open
-  chmod u+x $HOME/.local/bin/xclip
-fi
+# TODO: fix printf usage
+# if [ ! -e $HOME/.local/bin/xclip ] && [ ! -z $WSLENV ]; then
+#   echo "installing wsl-copy"
+#   cp $SCRIPT_PATH/wsl-utils/wsl-copy $HOME/.local/bin/xclip # See https://github.com/4U6U57/wsl-open
+#   chmod u+x $HOME/.local/bin/xclip
+# fi
 
 echo "copying dev-tools derivation to home directory"
 rm -rf $HOME/.dev-tools
