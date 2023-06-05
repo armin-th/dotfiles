@@ -3,7 +3,8 @@ if [ -z $(which curl) ] || [ -z $(which gunzip) ]; then
   exit 1
 fi
 
-if [ -z $(which nix-shell) ]; then
+NIX_BINARY_PATH=$(which nix)
+if [ -z $NIX_BINARY_PATH ]; then
   echo
   echo "Warning: You will need the nix package manager for some utilities."
   echo "See https://nixos.org/guides/install-nix"
@@ -12,7 +13,7 @@ fi
 
 SCRIPT_PATH="$( cd -- "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P  )"
 
-if [ ! -d $HOME/.oh-my-zsh ]; then
+if [ ! -d $HOME/.oh-my-zsh ] && [ ! -z $NIX_BINARY_PATH ]; then
   echo "installing ohmyzsh"
   nix develop $SCRIPT_PATH/dev-tools --command curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | sh
 fi

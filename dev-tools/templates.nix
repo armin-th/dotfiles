@@ -36,7 +36,7 @@ rec {
 
       export PATH=$NPM_GLOBAL/bin:$BASE_PATH
 
-      alias nxd="nix develop --command 'NIX_ZSH_SHELL=1 zsh'"
+      alias nxd="NIX_ZSH_SHELL=1 nix develop --command zsh"
       alias ec="emacs"
       alias nec="nix develop --command emacs"
       alias nnvim="nix develop --command nvim"
@@ -81,7 +81,7 @@ rec {
         SESSION_NAME=$1
       fi
 
-      tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "ZDOTDIR=${z-dot-dir} SHELL=${zsh.outPath}/bin/zsh zsh -i"
+      ZDOTDIR=${z-dot-dir} SHELL=${zsh.outPath}/bin/zsh tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "zsh -i"
     '';
   };
 }
