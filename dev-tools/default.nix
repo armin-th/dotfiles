@@ -25,36 +25,17 @@ let
     ])
   );
 
-  sbcl-buildapp =
-    stdenv.mkDerivation rec {
-      pname = "buildapp";
-      version = "1.5.6";
-      buildInputs = [ sbcl ];
-      src = builtins.fetchurl {
-        url = "https://github.com/xach/${pname}/archive/refs/tags/release-${version}.tar.gz";
-        sha256 = "1vd3sq1wnhkdhwq2qblpmygpvzpp0s10bbq9p5hacpb0a70vczyp";
-      };
-      makeFlags = [ "DESTDIR=$(out)" ];
-      configurePhase = ''
-        export SBCL_HOME=${sbcl.outPath}/lib/sbcl
-      '';
-      preInstall = ''
-        mkdir -p $out/bin
-      '';
-      dontFixup = true;
-    };
-
   templates = import ./templates.nix { inherit pkgs sbcl zsh bun; };
 
-  haskellPackages = haskell.packages.ghc902.extend (self: super: {
-    fourmolu = super.fourmolu.overrideAttrs (old: {
-      version = "0.10.1.0";
-    });
-  });
+  # haskellPackages = haskell.packages.ghc902.extend (self: super: {
+  #   fourmolu = super.fourmolu.overrideAttrs (old: {
+  #     version = "0.10.1.0";
+  #   });
+  # });
 
-  hls = haskellPackages.haskell-language-server;
+  # hls = haskellPackages.haskell-language-server;
 
-  ghc-name = "${haskellPackages.ghc.pname}-${haskellPackages.ghc.version}";
+  # ghc-name = "${haskellPackages.ghc.pname}-${haskellPackages.ghc.version}";
 
   system-name = stdenv.targetPlatform.system;
 
@@ -65,21 +46,18 @@ mkShell rec {
 
   buildInputs = [
     alsa-lib
-    clang
-    cmake
     curl
     editorconfig-core-c
-    emacs-nox
-    emscripten
+    # emacs-nox
     git
-    haskellPackages.apply-refact
-    haskellPackages.cabal-fmt
-    haskellPackages.cabal-install
-    haskellPackages.hasktags
-    haskellPackages.hlint
-    haskellPackages.hoogle
-    haskellPackages.stylish-haskell
-    hls
+    # haskellPackages.apply-refact
+    # haskellPackages.cabal-fmt
+    # haskellPackages.cabal-install
+    # haskellPackages.hasktags
+    # haskellPackages.hlint
+    # haskellPackages.hoogle
+    # haskellPackages.stylish-haskell
+    # hls
     ipfs
     jq
     jsonnet
@@ -88,12 +66,10 @@ mkShell rec {
     nixfmt
     nodejs
     pkg-config
-    protobuf
     pyPkgs
     python
     rnix
     sbcl
-    sbcl-buildapp
     silver-searcher
     templates.dev-shell
     tmux
@@ -106,7 +82,7 @@ mkShell rec {
     zsh
   ];
 
-  shellHook = ''
-    export LD_LIBRARY_PATH=${hls.outPath}/lib/${ghc-name}/${system-name}-${ghc-name}:$LD_LIBRARY_PATH
-  '';
+  # shellHook = ''
+  #   export LD_LIBRARY_PATH=${hls.outPath}/lib/${ghc-name}/${system-name}-${ghc-name}:$LD_LIBRARY_PATH
+  # '';
 }

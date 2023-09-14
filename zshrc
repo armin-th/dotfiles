@@ -147,4 +147,10 @@ fi
 
 export NIX_INSTALLER_NO_MODIFY_PROFILE=1
 
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+# source nix startup script
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]
+then . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
+elif [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]
+then . $HOME/.nix-profile/etc/profile.d/nix.sh
+fi
+
