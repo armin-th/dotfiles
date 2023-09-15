@@ -3,6 +3,11 @@ if [ -z $(which curl) ] || [ -z $(which gunzip) ]; then
   exit 1
 fi
 
+if [ -z $(which zsh) ]; then
+  echo "Please install zsh this system to continue."
+  exit 1
+fi
+
 NIX_BINARY_PATH=$(which nix)
 if [ -z $NIX_BINARY_PATH ]; then
   echo

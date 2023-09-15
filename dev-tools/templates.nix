@@ -9,12 +9,6 @@ rec {
 
       source $HOME/.zshrc
 
-      if [ ! -e "$HOME/.local/etc/bun-completions.sh" ]; then
-        mkdir -p $HOME/.local/etc
-        ${bun.outPath}/bin/bun completions > $HOME/.local/etc/bun-completions.sh
-      fi;
-      source $HOME/.local/etc/bun-completions.sh
-
       export NPM_GLOBAL=$HOME/.npm-global
 
       export SBCL_HOME=${sbcl.outPath}/lib/sbcl
@@ -52,7 +46,7 @@ rec {
     text = ''
       source-file $HOME/.tmux.conf
 
-      set -g default-command ${zsh.outPath}/bin/zsh
+      set -g default-command zsh
     '';
   };
 
@@ -81,7 +75,7 @@ rec {
         SESSION_NAME=$1
       fi
 
-      ZDOTDIR=${z-dot-dir} SHELL=${zsh.outPath}/bin/zsh tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "zsh -i"
+      ZDOTDIR=${z-dot-dir} SHELL=zsh tmux -u -f ${tmux-conf} new-session -A -s $SESSION_NAME "zsh -i"
     '';
   };
 }

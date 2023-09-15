@@ -79,7 +79,6 @@ mkShell rec {
     wget
     zig
     zls
-    zsh
   ];
 
   # shellHook = ''
