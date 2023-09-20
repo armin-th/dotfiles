@@ -6,6 +6,7 @@ return {
       "pylsp",
       "rnix",
       "rust_analyzer",
+      "tsserver",
     },
     config = {
       ["hls"] = {

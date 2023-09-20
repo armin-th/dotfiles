@@ -118,22 +118,6 @@ alias dccd="docker compose down"
 alias dcce="docker compose exec"
 alias dccr="docker compose run"
 
-function dsh() {
-  if [ "$NIX_DEV_TOOLS_SHELL" = "1" ]; then
-    dev-shell $@
-    return
-  fi
-
-  nix develop $HOME/.dev-tools --command dev-shell $@
-}
-
-function dsh-build() {
-  echo "Building dev-tools derivation"
-  export NIXPKGS_ALLOW_BROKEN=1
-  nix build $HOME/.dev-tools --impure --cores 0 --max-jobs auto --no-link
-  unset NIXPKGS_ALLOW_BROKEN
-}
-
 export EDITOR=vim
 
 export PATH=$HOME/.local/bin:$PATH
@@ -149,13 +133,3 @@ export LD_LIBRARY_PATH=$HOME/.local/lib/cuda:$LD_LIBRARY_PATH
 # Python pip temp install directory
 export TEMPDIR=$HOME/.pip-temp
 export PIP_CACHE_DIR=$HOME/.pip-temp
-
-export NIX_INSTALLER_NO_MODIFY_PROFILE=1
-
-# source nix startup script
-if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh ]
-then . /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh
-elif [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]
-then . $HOME/.nix-profile/etc/profile.d/nix.sh
-fi
-
