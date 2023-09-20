@@ -145,6 +145,9 @@ if [ -f $HOME/.cargo/env ]; then
   source $HOME/.cargo/env
 fi
 
+fpath+=~/.zfunc
+autoload -Uz compinit && compinit
+
 export NIX_INSTALLER_NO_MODIFY_PROFILE=1
 
 # source nix startup script
